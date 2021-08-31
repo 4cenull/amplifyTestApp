@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { API, Storage } from 'aws-amplify';
+import { I18n } from 'aws-amplify'
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import { listNotes } from './graphql/queries';
 import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from './graphql/mutations';
+
+import { dict } from './utils/locale/ja'
 
 const initialFormState = { name: '', description: '' }
 
@@ -91,3 +94,6 @@ function App() {
 }
 
 export default withAuthenticator(App);
+
+I18n.putVocabularies(dict);
+I18n.setLanguage('ja');
